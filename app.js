@@ -37,7 +37,7 @@ app.get('/compose', function(req, resp){
 app.post('/compose',(req,res)=>{
   let text = req.body.textCompose
   console.log(text);
-  res.redirect('compose')
+  res.redirect('compose') 
 })
 
 
