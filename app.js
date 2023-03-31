@@ -22,6 +22,8 @@ app.use(express.static('public'));
 
 
 app.get('/', function(req, resp){
+  
+
   resp.render('home', {
       homeContent:homeContent,
       posts:posts,
@@ -50,7 +52,11 @@ app.post('/compose',(req,resp)=>{
 posts.push(post);
  
   resp.redirect('/');
-})
+});
+
+app.get('/posts/:postName',(req,resp)=>{
+  console.log(req.params.postName);
+});
 
 
 
