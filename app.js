@@ -29,10 +29,16 @@ app.get('/contact', function(req, resp){
   resp.render('contact', {contactContent:contactContent})
 })
 
+
 app.get('/compose', function(req, resp){
   resp.render('compose')
 })
 
+app.post('/compose',(req,res)=>{
+  let text = req.body.textCompose
+  console.log(text);
+  res.redirect('compose')
+})
 
 
 
