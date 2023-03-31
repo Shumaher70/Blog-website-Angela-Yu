@@ -22,7 +22,10 @@ app.use(express.static('public'));
 
 
 app.get('/', function(req, resp){
-  resp.render('home', {homeContent:homeContent});;
+  resp.render('home', {
+      homeContent:homeContent,
+      posts:posts,
+    });
 });
 
 app.get('/about', function(req, resp){
