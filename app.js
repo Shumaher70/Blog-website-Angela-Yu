@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 app.get('/', function(req, resp){
-  resp.render('home')
+  resp.render('home', {startingContent:homeStartingContent})
 })
 
 // Server Listener
