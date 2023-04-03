@@ -23,7 +23,6 @@ app.use(express.static('public'));
 
 app.get('/', function(req, resp){
   
-
   resp.render('home', {
       homeContent:homeContent,
       posts:posts,
@@ -49,21 +48,22 @@ app.post('/compose',(req,resp)=>{
     content: req.body.postBody
   };
 
-  postFound = post.title
-
  posts.push(post);
  
   resp.redirect('/');
 });
 
-app.get('/posts/:postName',(req,resp)=>{
+app.get('/post/:postName',(req,resp)=>{
   const requestedTitle = req.params.postName 
- 
+
   posts.forEach(post => {
-    _.toLower(post.title)  ==  _.toLower(requestedTitle) ? console.log('Math Found'): post;
+   if(_.toLower(post.title)  == _.toLower(requestedTitle)){
+    resp.render('post',{
+      post:post,
+    });
+   }  
   });
 });
-
 
 
 // Server Listener
