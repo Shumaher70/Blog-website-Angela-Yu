@@ -5,12 +5,20 @@
 <p><%= homeContent %></p>
 
 <% posts.forEach(post => { %> <% if(post.content.length > 100){%>
+
 <h1 class="title"><%= post.title %></h1>
 <p class="content">
-  <%= post.content.substring(0,100) + ' ...' %>
-  <a href="http://localhost:3000/post/<%= post.title %>">Read more</a>
+
+    <%= post.content.substring(0,100) + ' ...' %>
+
+    <a href="http://localhost:3000/post/<%= post._id %>">Read more</a>
 </p>
+
 <% } else{ %>
-<h1 class="title"><%= post.title %></h1>
-<p class="content"><%= post.content %></p>
-<% } %> <% }); %> <%- include('partials/footer') -%>
+
+    <h1 class="title"><%= post.title %></h1>
+    <p class="content"><%= post.content %></p>
+
+<% }}); %> 
+
+<%- include('partials/footer') -%>

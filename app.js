@@ -34,8 +34,10 @@ app.get('/', function (req, resp) {
       homeContent: homeContent,
       posts: item,
     });
+    resp.redirect('/')
   })
  .catch(err=>err)
+
 });
 
 
@@ -58,17 +60,33 @@ app.post('/compose', (req, resp) => {
   });
   item.save()
   resp.redirect('/');
+  resp.redirect('/');
 });
 
 app.get('/post/:postName', (req, resp) => {
-  const requestedTitle = _.toLower(req.params.postName);
-  Item.findOne({title: requestedTitle}).then(item =>{
-    resp.render('post',{
-      title: item.title,
-      content: item.content,
-    })
-  })
+  const requestedTitle = req.params.postName
+
+    Item.findOne({_id: requestedTitle}).then(item =>{
+      if(item == null){
+        Item.findOne({title: requestedTitle}).then(item => {
+          resp.render('post',{
+            title: item.title,
+            content: item.content,
+          });
+        })
+      }else{
+        Item.findOne({_id: requestedTitle}).then(item => {
+          resp.render('post',{
+            title: item.title,
+            content: item.content,
+          });
+        })
+      }
+      
+    });
+
 });
+
 
 // Server Listener
 app.listen(3000, function () {
